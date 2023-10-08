@@ -12,10 +12,9 @@ const SetupLayout = async ({ children }: Props) => {
 	if (!userId) {
 		redirect("/sign-in");
 	}
+
 	const store = await prismadb.store.findFirst({
-		where: {
-			userId,
-		},
+		where: { userId },
 	});
 
 	if (store) {
