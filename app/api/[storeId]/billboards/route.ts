@@ -6,7 +6,7 @@ import prismadb from "@/lib/prismadb";
 export async function POST(req: Request, { params }: { params: { storeId: string } }) {
 	try {
 		const { userId } = auth();
-		const { label, imageUrl } = await req.json();
+		const { label, imageUrls: imageUrl } = await req.json();
 		if (!userId) return new NextResponse("Unauthenticated", { status: 401 });
 		if (!label) return new NextResponse("Label is required", { status: 400 });
 		if (!imageUrl) return new NextResponse("Image url is required", { status: 400 });

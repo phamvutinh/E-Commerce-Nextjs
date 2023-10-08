@@ -41,7 +41,6 @@ const BillBoardForm: React.FC<BillBoardFormProps> = ({ initialData }) => {
 	const description = initialData ? "Edit a billboard" : "Create a new billboard";
 	const toastSuccess = initialData ? "Billboard updated successfully" : "Billboard created successfully";
 	const action = initialData ? "Save changes" : "Create billboard";
-	console.log(initialData);
 
 	const form = useForm<SettingsFormValues>({
 		defaultValues: initialData || {
@@ -60,6 +59,7 @@ const BillBoardForm: React.FC<BillBoardFormProps> = ({ initialData }) => {
 				await axios.post(`/api/${params.storeId}/billboards`, data);
 			}
 			router.refresh();
+			router.push(`/${params.storeId}/billboards`);
 			toast.success(toastSuccess);
 		} catch (error) {
 			toast.error("Something went wrong!");
@@ -73,7 +73,7 @@ const BillBoardForm: React.FC<BillBoardFormProps> = ({ initialData }) => {
 			setLoading(true);
 			await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
 			router.refresh();
-			router.push("/");
+			router.push(`/${params.storeId}/billboards`);
 			toast.success("Billboard deleted successfully");
 		} catch (error) {
 			toast.error("Make sure you removed all categories using this billboard.");

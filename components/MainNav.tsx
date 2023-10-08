@@ -32,7 +32,9 @@ export function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElemen
 					href={route.href}
 					className={cn(
 						"text-sm font-medium transition-colors hover:text-primary",
-						route.active ? "text-black dark:text-white" : "text-muted-foreground dark:text-white"
+						route.active
+							? "text-sm font-medium transition-colors hover:text-primary"
+							: "text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 					)}
 				>
 					{route.label}

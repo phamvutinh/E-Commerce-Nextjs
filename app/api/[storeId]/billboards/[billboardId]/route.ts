@@ -20,7 +20,7 @@ export async function GET(_req: Request, { params }: { params: { billboardId: st
 export async function PATCH(req: Request, { params }: { params: { storeId: string; billboardId: string } }) {
 	try {
 		const { userId } = auth();
-		const { label, imageUrl } = await req.json();
+		const { label, imageUrls: imageUrl } = await req.json();
 		if (!userId) return new NextResponse("Unauthenticated", { status: 401 });
 		if (!label) return new NextResponse("Label is required", { status: 400 });
 		if (!imageUrl) return new NextResponse("Image url is required", { status: 400 });
